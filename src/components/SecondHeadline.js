@@ -1,13 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const SecondHeadline = ({ text }) => {
-    return (
-      <div className="flex p-2.5 items-center gap-2.5">
-        <h2>
-          {text}
-        </h2>
-      </div>
-    );
+  return <h2 className="text-center">{text}</h2>;
 };
 
 export default SecondHeadline;

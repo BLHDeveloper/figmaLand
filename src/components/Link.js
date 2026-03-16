@@ -1,12 +1,13 @@
 import React from "react";
 
-const Link = ({ href, text, className, className2 }) => {
+const Link = ({ href, text, className = "" }) => {
   return (
-    <div className={`flex items-center gap-[10px] p-[10px]${className2}`}>
-      <a href={href} className={className}>
-        {text}
-      </a>
-    </div>
+    <a
+      href={href}
+      className={`inline-block py-1.5 px-2.5 transition-opacity duration-200 hover:opacity-70 ${className}`}
+    >
+      {text}
+    </a>
   );
 };
 

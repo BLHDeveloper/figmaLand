@@ -1,46 +1,95 @@
 @import "tailwindcss";
 @import "../../public/fonts/style.css";
+
+/* ═══════════════════════════════════════════
+   Design System — CSS Custom Properties
+   ═══════════════════════════════════════════ */
 :root {
+  /* Colors */
   --dark-background: #181818;
+  --surface: #222222;
+  --surface-elevated: #343434;
   --white: #fff;
   --dark: #000;
-  --second-text: #5c5c5c;
+  --second-text: #9a9a9a;
+  --accent: #4452fe;
+  --accent-hover: #5a66ff;
+  --accent-glow: rgba(68, 82, 254, 0.35);
+  --teal: #02e4c0;
+  --border: rgba(255, 255, 255, 0.1);
+
+  /* Spacing */
+  --section-gap: clamp(60px, 8vw, 120px);
+  --container-max: 1200px;
+  --container-px: clamp(20px, 5vw, 80px);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 33px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
 }
+
+/* ═══════════════════════════════════════════
+   Global Reset & Base Styles
+   ═══════════════════════════════════════════ */
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--white);
+}
+
 body {
   background: var(--dark-background);
   color: var(--dark);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 100px;
-  font-family: "font-regular", "font-med";
+  align-items: stretch;
+  gap: 0;
+  font-family: "font-regular", "font-med", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* ═══════════════════════════════════════════
+   Typography — Responsive with clamp()
+   ═══════════════════════════════════════════ */
 h1 {
   text-align: center;
   color: var(--white);
   font-family: "font-med";
-  font-size: 80px;
+  font-size: clamp(40px, 6vw, 80px);
   font-style: normal;
   font-weight: 500;
-  line-height: 88px; /* 110% */
+  line-height: 1.1;
   letter-spacing: 0.2px;
 }
+
 h2 {
   color: var(--white);
   font-family: "font-regular";
-  font-size: 52px;
+  font-size: clamp(32px, 4vw, 52px);
   font-style: normal;
   font-weight: 400;
-  line-height: 62px; /* 119.231% */
+  line-height: 1.2;
   letter-spacing: 0.2px;
 }
+
 h3 {
   color: var(--white);
   font-family: "font-med";
-  font-size: 20px;
+  font-size: clamp(18px, 1.5vw, 20px);
   font-style: normal;
   font-weight: 500;
-  line-height: 30px; /* 150% */
+  line-height: 1.5;
   letter-spacing: 0.1px;
 }
 
@@ -50,6 +99,7 @@ p {
   font-style: normal;
   font-weight: 400;
   letter-spacing: 0.2px;
+  line-height: 1.6;
 }
 
 span {
@@ -58,7 +108,7 @@ span {
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 24px; /* 150% */
+  line-height: 1.5;
   letter-spacing: 0.1px;
 }
 
@@ -69,16 +119,59 @@ a {
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  line-height: 24px; /* 150% */
+  line-height: 1.5;
   letter-spacing: 0.2px;
+  text-decoration: none;
+  transition: color var(--transition-fast), opacity var(--transition-fast);
+}
+
+a:hover {
+  opacity: 0.75;
 }
 
 button {
   cursor: pointer;
 }
 
-/* @media (max-width: 768px) {
-  a {
+/* ═══════════════════════════════════════════
+   Utility Classes
+   ═══════════════════════════════════════════ */
+.container-main {
+  width: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-inline: var(--container-px);
+}
 
-  }
-} */
+.section {
+  padding-block: var(--section-gap);
+  width: 100%;
+}
+
+.section-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 44px;
+}
+
+/* Card hover utility */
+.card-hover {
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Image hover zoom */
+.img-hover-zoom {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+.img-hover-zoom img {
+  transition: transform var(--transition-slow);
+}
+.img-hover-zoom:hover img {
+  transform: scale(1.05);
+}

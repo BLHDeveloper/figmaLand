@@ -5,155 +5,62 @@ import Title from "@/components/Title";
 import Paragraph from "@/components/Paragraph";
 import Button from "@/components/Button";
 import Image from "next/image";
+
+const ContentCard = ({ title, description, buttonText, imageSrc, imageAlt, imageWidth, imageHeight }) => (
+  <div className="flex flex-col items-center w-full py-10 gap-8 rounded-[var(--radius-md)] border border-[#D3D3D3] bg-white shadow-[0px_4px_31px_0px_rgba(0,0,0,0.15)] card-hover">
+    <div className="flex flex-col items-center gap-3 px-6 text-center">
+      <Title title={title} className="!text-[#000]" />
+      <Paragraph
+        paragraph={description}
+        className="!text-[#5C5C5C] text-center max-w-[320px]"
+      />
+    </div>
+    <Button text={buttonText} />
+    <div className="px-6 w-full flex justify-center">
+      <Image
+        src={imageSrc}
+        alt={imageAlt}
+        width={imageWidth}
+        height={imageHeight}
+        className="rounded-xl w-full max-w-[400px] h-auto"
+      />
+    </div>
+  </div>
+);
+
 const Content = () => {
   return (
-    <>
-      <div className="hidden sm:flex flex-col items-center gap-[35px] p-[50px_199px] self-stretch">
-        <div className="flex flex-col items-center gap-[44px]">
-          <div className="flex flex-col items-center">
-            <SecondHeadline text="Contents" />
-            <SubHeading
-              paragraph={
-                <>
-                  We focus on ergonomics and meeting you where you work.
-                  <br />
-                  It's only a keystroke away.{" "}
-                </>
-              }
-            />
-          </div>
-          <div className="flex items-center gap-[33px]">
-            <div className="flex flex-col items-center w-[476px] py-[40px] gap-[57px] rounded-[10px] border border-[#D3D3D3] bg-white shadow-[0px_4px_31px_0px_rgba(0,0,0,0.15)]">
-              <div className="flex flex-col items-center gap-[10px]">
-                <Title title="Work" className="text-center !text-[#000]" />
-                <Paragraph
-                  paragraph={
-                    <>
-                      Ever wondered if you're too reliant
-                      <br />
-                      on a client for work? Slate helps <br />
-                      you identify .
-                    </>
-                  }
-                  className="!text-[#5C5C5C] text-center"
-                />
-              </div>
-              <Button text="Sign Up" />
-              <Image
-                src="/images/Macbook.png"
-                alt="Illustration"
-                width={405.125}
-                height={226.523}
-                className="flex"
-              />
-            </div>
-            <div className="flex flex-col items-center w-[476px] py-[40px] gap-[30px] rounded-[10px] border border-[#D3D3D3] bg-white shadow-[0px_4px_31px_0px_rgba(0,0,0,0.15)]">
-              <div className="flex flex-col items-center gap-[10px]">
-                <Title
-                  title="Design with real data"
-                  className="text-center !text-[#000]"
-                />
-                <Paragraph
-                  paragraph={
-                    <>
-                      Ever wondered if you're too reliant <br />
-                      on a client for work? Slate helps <br />
-                      you identify .
-                    </>
-                  }
-                  className="!text-[#5C5C5C] text-center"
-                />
-              </div>
-              <Button text="Try For Free" />
-              <Image
-                src="/images/Board.jpeg"
-                alt="Illustration"
-                width={379}
-                height={276}
-                className="rounded-xl bg-cover bg-center bg-light-gray shadow-lg"
-                style={{ width: "auto", height: "auto" }}
-              />
-            </div>
-          </div>
+    <section className="section">
+      <div className="container-main section-inner">
+        {/* Section Header */}
+        <div className="flex flex-col items-center gap-3">
+          <SecondHeadline text="Contents" />
+          <SubHeading paragraph="We focus on ergonomics and meeting you where you work. It's only a keystroke away." />
+        </div>
+
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+          <ContentCard
+            title="Work"
+            description="Ever wondered if you're too reliant on a client for work? Slate helps you identify."
+            buttonText="Sign Up"
+            imageSrc="/images/Macbook.png"
+            imageAlt="Macbook showing transaction dashboard"
+            imageWidth={405}
+            imageHeight={227}
+          />
+          <ContentCard
+            title="Design with real data"
+            description="Ever wondered if you're too reliant on a client for work? Slate helps you identify."
+            buttonText="Try For Free"
+            imageSrc="/images/Board.jpeg"
+            imageAlt="Board showing project management view"
+            imageWidth={379}
+            imageHeight={276}
+          />
         </div>
       </div>
-      <div className="flex sm:hidden flex-col items-center gap-[35px] p-[50px_199px] self-stretch">
-        <div className="flex flex-col items-center gap-[44px]">
-          <div className="flex flex-col items-center">
-            <SecondHeadline text="Contents" />
-            <SubHeading
-              paragraph={
-                <>
-                  We focus on ergonomics and <br />
-                  meeting you where you work.
-                  <br />
-                  It's only a keystroke away.{" "}
-                </>
-              }
-            />
-          </div>
-          <div className="flex flex-col items-center gap-[33px] w-[389px]">
-            <div className="flex flex-col items-center w-[348px] py-[40px] gap-[57px] rounded-[10px] border border-[#D3D3D3] bg-white shadow-[0px_4px_31px_0px_rgba(0,0,0,0.15)]">
-              <div className="flex flex-col items-center gap-[10px]">
-                <Title title="Work" className="text-center !text-[#000]" />
-                <Paragraph
-                  paragraph={
-                    <>
-                      Ever wondered if you're too reliant
-                      <br />
-                      on a client for work? Slate helps <br />
-                      you identify .
-                    </>
-                  }
-                  className="!text-[#5C5C5C] text-center"
-                />
-              </div>
-              <Button text="Sign Up" />
-              <Image
-                src="/images/Macbook.png"
-                alt="Illustration"
-                width={297.031}
-                height={174.955}
-                className="flex"
-              />
-            </div>
-            <div className="flex flex-col items-center w-[348px] py-[40px] gap-[30px] rounded-[10px] border border-[#D3D3D3] bg-white shadow-[0px_4px_31px_0px_rgba(0,0,0,0.15)]">
-              <div className="flex flex-col items-center gap-[10px]">
-                <Title
-                  title={
-                    <>
-                      Design with
-                      <br />
-                      real data
-                    </>
-                  }
-                  className="text-center !text-[#000]"
-                />
-                <Paragraph
-                  paragraph={
-                    <>
-                      Ever wondered if you're too reliant <br />
-                      on a client for work? Slate helps <br />
-                      you identify .
-                    </>
-                  }
-                  className="!text-[#5C5C5C] text-center"
-                />
-              </div>
-              <Button text="Try For Free" />
-              <Image
-                src="/images/Board.jpeg"
-                alt="Illustration"
-                width={280}
-                height={204}
-                className="rounded-xl bg-cover bg-center bg-light-gray shadow-lg"
-                style={{ width: "auto", height: "auto" }}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    </section>
   );
 };
 
